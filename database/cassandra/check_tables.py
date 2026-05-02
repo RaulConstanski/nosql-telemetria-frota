@@ -1,27 +1,18 @@
-import os
-from dotenv import load_dotenv
-from cassandra.cluster import Cluster
-from cassandra.auth import PlainTextAuthProvider
+from src.common.astra_client import get_astra_session
 
-load_dotenv()
+
+session, cluster = get_astra_session()
+print(f"✅ Conectado com sucesso ao keyspace: {session.keyspace}")
+
 
 def list_tables():
-    client_id = os.getenv('ASTRA_DB_CLIENT_ID')
-    client_secret = os.getenv('ASTRA_DB_CLIENT_SECRET')
-    bundle_path = os.getenv('SECURE_CONNECT_BUNDLE_PATH')
-    keyspace = os.getenv('KEYSPACE')
+    session, cluster = get_astra_session()
 
-    cluster = Cluster(
-        cloud={'secure_connect_bundle': bundle_path},
-        auth_provider=PlainTextAuthProvider(client_id, client_secret)
-    )
-    session = cluster.connect()
-
-    print(f"🔍 Verificando tabelas no keyspace: {keyspace}...")
+    print(f"🔍 Verificando tabelas no keyspace: {session.keyspace}...")
 
     # Consulta ao catálogo do sistema para listar as tabelas do seu keyspace
-    query = f"SELECT table_name FROM system_schema.tables WHERE keyspace_name='{keyspace}'"
-    
+    query = f"SELECT table_name FROM system_schema.tables WHERE keyspace_name='{session.keyspace}'"
+
     try:
         rows = session.execute(query)
         tables = [row.table_name for row in rows]
@@ -31,7 +22,7 @@ def list_tables():
             for table in tables:
                 print(f"  - {table}")
         else:
-            print(f"⚠️ Nenhuma tabela encontrada no keyspace '{keyspace}'.")
+            print(f"⚠️ Nenhuma tabela encontrada no keyspace '{session.keyspace}'.")
 
     except Exception as e:
         print(f"❌ Erro ao listar tabelas: {e}")

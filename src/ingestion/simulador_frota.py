@@ -1,27 +1,16 @@
 import time
 import random
-import os
+
 from datetime import datetime
 from dotenv import load_dotenv
 from cassandra.query import BatchStatement
 from cassandra import ConsistencyLevel
-from cassandra.cluster import Cluster
-from cassandra.auth import PlainTextAuthProvider
+from src.common.astra_client import get_astra_session
 
-load_dotenv()
+
+session, cluster = get_astra_session()
 
 def simulate_fleet(num_trucks=15):
-    # Inicializa a conexão usando sua lógica centralizada
-    bundle_path = os.getenv('SECURE_CONNECT_BUNDLE_PATH')
-    client_id = os.getenv('ASTRA_DB_CLIENT_ID')
-    client_secret = os.getenv('ASTRA_DB_CLIENT_SECRET')
-    keyspace = os.getenv('KEYSPACE')
-
-    cloud_config = {'secure_connect_bundle': bundle_path}
-    auth_provider = PlainTextAuthProvider(client_id, client_secret)
-    
-    cluster = Cluster(cloud=cloud_config, auth_provider=auth_provider)
-    session = cluster.connect()
     
     # Lista fixa de caminhões para simular a frota da ACME LTDA
     truck_ids = [f"BR-{random.randint(1000, 9999)}" for _ in range(num_trucks)]
@@ -33,7 +22,7 @@ def simulate_fleet(num_trucks=15):
             for truck_id in truck_ids:
                 # Gerando dados fictícios de sensores
                 agora = datetime.now()
-                velocidade = random.randint(40, 110) # Simula variação de velocidade
+                velocidade = random.randint(40, 130) # Simula variação de velocidade
                 gps = f"{random.uniform(-25.4, -25.5):.4f}, {random.uniform(-49.2, -49.3):.4f}" # Região de Curitiba/Litoral PR
                 
                 # Dados básicos de telemetria
@@ -48,10 +37,10 @@ def simulate_fleet(num_trucks=15):
                 }
 
                 # --- 1. Histórico Completo (Q1) ---
-                query_hists = f"INSERT INTO {keyspace}.telemetria_por_caminhao (id_caminhao, data_hora, gps, velocidade, rpm, temperatura_motor, nivel_combustivel) VALUES (%s, %s, %s, %s, %s, %s, %s)"
+                query_hists = f"INSERT INTO {session.keyspace}.telemetria_por_caminhao (id_caminhao, data_hora, gps, velocidade, rpm, temperatura_motor, nivel_combustivel) VALUES (%s, %s, %s, %s, %s, %s, %s)"
                 
                 # --- 2. Status Atual (Q3 - Upsert) ---
-                query_atual = f"INSERT INTO {keyspace}.telemetria_atual (id_caminhao, data_hora, gps, velocidade, rpm, temperatura_motor, nivel_combustivel) VALUES (%s, %s, %s, %s, %s, %s, %s)"
+                query_atual = f"INSERT INTO {session.keyspace}.telemetria_atual (id_caminhao, data_hora, gps, velocidade, rpm, temperatura_motor, nivel_combustivel) VALUES (%s, %s, %s, %s, %s, %s, %s)"
 
                 # Execução das principais
                 session.execute(query_hists, (telemetria['id'], telemetria['ts'], telemetria['gps'], telemetria['v'], telemetria['rpm'], telemetria['temp'], telemetria['comb']))
@@ -60,7 +49,7 @@ def simulate_fleet(num_trucks=15):
                 # --- 3. Lógica de Alerta de Velocidade (Nova Q2) ---
                 # Só insere se exceder o benchmark de 80km/h
                 if velocidade > 80:
-                    query_alerta = f"INSERT INTO {keyspace}.alerta_por_excesso_velocidade (dia, velocidade, data_hora, id_caminhao, gps) VALUES (%s, %s, %s, %s, %s)"
+                    query_alerta = f"INSERT INTO {session.keyspace}.alerta_por_excesso_velocidade (dia, velocidade, data_hora, id_caminhao, gps) VALUES (%s, %s, %s, %s, %s)"
                     dia_atual = agora.date()
                     session.execute(query_alerta, (dia_atual, telemetria['v'], telemetria['ts'], telemetria['id'], telemetria['gps']))
                     print(f"⚠️  ALERTA: {truck_id} a {velocidade} km/h!")

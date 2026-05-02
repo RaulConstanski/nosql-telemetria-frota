@@ -1,30 +1,15 @@
-import os
-from dotenv import load_dotenv
-from cassandra.cluster import Cluster
-from cassandra.auth import PlainTextAuthProvider
+from src.common.astra_client import get_astra_session
 
-# Carrega variáveis do .env
-load_dotenv()
+
+session, cluster = get_astra_session()
 
 def setup_cassandra():
-    # Configurações de conexão (ajuste os nomes das variáveis conforme seu .env)
-    bundle_path = os.getenv('SECURE_CONNECT_BUNDLE_PATH')
-    client_id = os.getenv('ASTRA_DB_CLIENT_ID')
-    client_secret = os.getenv('ASTRA_DB_CLIENT_SECRET')
-    keyspace = os.getenv('KEYSPACE')
-
-    cloud_config = {'secure_connect_bundle': bundle_path}
-    auth_provider = PlainTextAuthProvider(client_id, client_secret)
-    
-    cluster = Cluster(cloud=cloud_config, auth_provider=auth_provider)
-    session = cluster.connect()
-
-    print(f"🛠️ Iniciando configuração das tabelas no Keyspace: {keyspace}...")
+    print(f"🛠️ Iniciando configuração das tabelas no Keyspace: {session.keyspace}...")
 
     tables = [
         # Tabela Q1: Histórico completo (Time Series)
         f"""
-        CREATE TABLE IF NOT EXISTS {keyspace}.telemetria_por_caminhao (
+        CREATE TABLE IF NOT EXISTS {session.keyspace}.telemetria_por_caminhao (
             id_caminhao text,
             data_hora timestamp,
             gps text,
@@ -38,7 +23,7 @@ def setup_cassandra():
 
         # Tabela Q2: Foco em performance para excesso de velocidade
         f"""
-        CREATE TABLE IF NOT EXISTS {keyspace}.alerta_por_excesso_velocidade (
+        CREATE TABLE IF NOT EXISTS {session.keyspace}.alerta_por_excesso_velocidade (
             dia date,
             velocidade int,
             data_hora timestamp,
@@ -49,8 +34,9 @@ def setup_cassandra():
         """,
 
         # Tabela Q3: Status atual (Apenas o último registro de cada caminhão)
+        # Sendo o id_caminhao a chave primária, cada nova inserção irá sobrescrever a anterior (upsert), mantendo apenas o registro mais recente.
         f"""
-        CREATE TABLE IF NOT EXISTS {keyspace}.telemetria_atual (
+        CREATE TABLE IF NOT EXISTS {session.keyspace}.telemetria_atual (
             id_caminhao text PRIMARY KEY,
             data_hora timestamp,
             gps text,
