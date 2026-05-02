@@ -1,0 +1,11 @@
+# Astra DB conection
+*.zip
+*.token
+.env
+
+# Python
+__pycache__/
+*.py[cod]
+venv/
+.ipynb_checkpoints/
+
