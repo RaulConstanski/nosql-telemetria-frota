@@ -45,3 +45,14 @@ Aplicamos o Teorema CAP, priorizando AP (Availability e Partition Tolerance) par
     - Mecânica de Upsert: Definimos apenas o id_caminhao como chave primária.  
 
 Eficiência: Cada nova mensagem enviada pelo caminhão sobrescreve o registro anterior, garantindo uma tabela enxuta (limitada a 50 mil linhas) que evita o processamento de agregação de grandes volumes históricos.  
+
+## Arquitetura do Projeto
+O projeto foi reestruturado seguindo princípios de Analytics Engineering, garantindo modularidade e segurança:
+
+- src/common: Core de conectividade. Centraliza a autenticação via Secure Connect Bundle e gerencia sessões de forma segura usando variáveis de ambiente (.env).
+
+- src/ingestion: Simulador de frota que atua como produtor de dados, gerando telemetria de GPS, RPM, velocidade e temperatura.
+
+- src/reports: Motores de execução que transformam arquivos .cql em relatórios formatados no terminal.
+
+- queries/: Repositório de artefatos SQL/CQL, desacoplando a lógica de banco de dados do código Python.
