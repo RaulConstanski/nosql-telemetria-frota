@@ -58,5 +58,8 @@ A flexibilidade do esquema JSON permite armazenar diferentes tipos de carga (per
 - manifestos: Registra as viagens, incluindo um snapshot dos dados do motorista e detalhes de carga.
 
 ### Exemplos de consultas no MongoDB via mongosh, podendo ser aplicado em código
-- Consulta de motoristas que possuem carteira E
-- - db["motoristas"].find({"cnh_categoria": "E"}, {"nome": 1, "cpf": 1,"_id": 1})
+1. Consulta de motoristas que possuem carteira E
+    - db["motoristas"].find({"cnh_categoria": "E"}, {"nome": 1, "cpf": 1,"_id": 1})
+
+2. Consulta motorista dentro de manifesto que está viajando para curitiba
+    - db["manifestos"].find({$and: [{"rota.destino": {"$regex": "Curitiba"}, "status":"Iniciado"}]}, {"motorista.nome": 1,"_id": 0})
