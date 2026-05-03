@@ -70,11 +70,17 @@ A flexibilidade do esquema JSON permite armazenar diferentes tipos de carga (per
 Para utilizar o Astra você precisa criar uma conta no site: https://accounts.datastax.com/session-service/v1/login
 
 Crie um banco, veja o manual para conexão, este projeto utiliza conexão via bundle, necessário setar as variáveis de ambiente:
+
 ASTRA_DB_CLIENT_ID = 'Verifique no site do datastax'
+
 ASTRA_DB_CLIENT_SECRET = 'Verifique no site do datastax'
+
 SECURE_CONNECT_BUNDLE_PATH = 'Verifique no site do datastax, baixe na raiz do projeto'
+
 ASTRA_DB_KEYSPACE = 'gestao_frota' # ou o nome que desejar
 
 MONGO_ROOT_USER= 'crie-seu-usuario-admin'
+
 MONGO_ROOT_PASSWORD= 'insira sua senha'
+
 MONGO_URI=mongodb://${MONGO_ROOT_USER}:${MONGO_ROOT_PASSWORD}@mongodb:27017/ #porta padrão mongodb
