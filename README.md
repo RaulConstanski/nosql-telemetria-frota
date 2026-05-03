@@ -1,15 +1,17 @@
-# NoSQL Telemetria de Frota: Arquitetura ACME LTDA
+# NoSQL: Arquitetura ACME LTDA
 
-Este projeto implementa uma infraestrutura de Big Data para monitoramento de telemetria de uma frota de 50.000 caminhões, baseada em um estudo de caso para a ACME LTDA. O foco principal é a utilização do Apache Cassandra (via DataStax Astra DB) para lidar com alta taxa de ingestão e consultas de séries temporais com baixa latência.
+O projeto utiliza uma arquitetura de banco de dados híbrida para atender a diferentes necessidades de negócio:
+- Telemetria de camihões: Apache Cassandra (Nuvem - DataStax Astra DB);
+- MongoDB (local - Docker)
 
-## Justificativa da Arquitetura NoSQL
+## Justificativa da Arquitetura NoSQL - Telemetria em Cassandra
 
 Diferente de bancos relacionais, a modelagem no Cassandra é Query-Driven (orientada por consultas). Isso significa que os dados são organizados fisicamente para responder a perguntas específicas de negócio sem a necessidade de JOINS ou filtros custosos.  
 
 Aplicamos o Teorema CAP, priorizando AP (Availability e Partition Tolerance) para garantir que o fluxo de dados dos sensores nunca seja interrompido, utilizando um Fator de Replicação (RF) de 3 e Nível de Consistência de Escrita (W) igual a 1.
 
-## Modelagem de Dados e Consultas (Queries)
-### Q1: Análise Histórica por Veículo
+### Modelagem de Dados e Consultas (Queries)
+#### Q1: Análise Histórica por Veículo
 
 1. Tabela: telemetria_por_caminhao
 
@@ -22,7 +24,7 @@ Aplicamos o Teorema CAP, priorizando AP (Availability e Partition Tolerance) par
 
     - Ordenação: Definida como DESC para que as leituras mais recentes sejam recuperadas com latência mínima.  
 
-### Q2: Monitoramento de Excesso de Velocidade (Alertas)
+#### Q2: Monitoramento de Excesso de Velocidade (Alertas)
 
 1. Tabela: alertas_excesso_velocidade
 
@@ -34,7 +36,7 @@ Aplicamos o Teorema CAP, priorizando AP (Availability e Partition Tolerance) par
 
     - Performance: Ao clusterizar por velocidade, permitimos que o Cassandra realize Range Queries (buscas por faixa) altamente eficientes, filtrando apenas os registros que violam o limite estabelecido.  
 
-### Q3: Status Atual da Frota (Last Known State)
+#### Q3: Status Atual da Frota (Last Known State)
 
 1. Tabela: telemetria_atual
 
@@ -46,13 +48,11 @@ Aplicamos o Teorema CAP, priorizando AP (Availability e Partition Tolerance) par
 
 Eficiência: Cada nova mensagem enviada pelo caminhão sobrescreve o registro anterior, garantindo uma tabela enxuta (limitada a 50 mil linhas) que evita o processamento de agregação de grandes volumes históricos.  
 
-## Arquitetura do Projeto
-O projeto foi reestruturado seguindo princípios de Analytics Engineering, garantindo modularidade e segurança:
+## Manifesto de Carga e Cadastro de Motoristas - MongoDB
 
-- src/common: Core de conectividade. Centraliza a autenticação via Secure Connect Bundle e gerencia sessões de forma segura usando variáveis de ambiente (.env).
+A flexibilidade do esquema JSON permite armazenar diferentes tipos de carga (perecíveis, eletrônicos, etc) sem necessidade de migrações complexas de esquema.
 
-- src/ingestion: Simulador de frota que atua como produtor de dados, gerando telemetria de GPS, RPM, velocidade e temperatura.
+### Coleções (collection):
+- motoristas: Armazena o cadastro principal atualizado do condutor.
 
-- src/reports: Motores de execução que transformam arquivos .cql em relatórios formatados no terminal.
-
-- queries/: Repositório de artefatos SQL/CQL, desacoplando a lógica de banco de dados do código Python.
+- manifestos: Registra as viagens, incluindo um snapshot dos dados do motorista e detalhes de carga.

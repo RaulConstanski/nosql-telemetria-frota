@@ -1,0 +1,162 @@
+[
+  {
+    "id_manifesto": "MNF-2026-001",
+    "rota": {"origem": "Curitiba, PR", "destino": "Paranaguá, PR"},
+    "veiculo": {"id_caminhao": "SC-1111", "modelo": "Scania R450"},
+    "motorista": {"cpf": "111.222.333-44", "nome": "Carlos Roberto Souza"},
+    "carga": {"tipo": "Grãos", "peso_kg": 35000, "itens": [{"produto": "Soja", "nfe": "9901"}]},
+    "status": "Finalizado"
+  },
+  {
+    "id_manifesto": "MNF-2026-002",
+    "rota": {"origem": "São Paulo, SP", "destino": "Curitiba, PR"},
+    "veiculo": {"id_caminhao": "VO-2222", "modelo": "Volvo FH 540"},
+    "motorista": {"cpf": "222.333.444-55", "nome": "Ana Beatriz Oliveira"},
+    "carga": {"tipo": "Eletrônicos", "valor": 450000.0, "itens": [{"produto": "Notebooks", "qtd": 200}]},
+    "status": "Finalizada"
+  },
+  {
+    "id_manifesto": "MNF-2026-003",
+    "rota": {"origem": "Cascavel, PR", "destino": "Santos, SP"},
+    "veiculo": {"id_caminhao": "MB-3333", "modelo": "Mercedes Axor"},
+    "motorista": {"cpf": "333.444.555-66", "nome": "Fernando Pereira Lima"},
+    "carga": {"tipo": "Congelados", "temp_requerida": -18.0, "itens": [{"produto": "Frango", "peso": 28000}]},
+    "status": "Planejado"
+  },
+  {
+    "id_manifesto": "MNF-2026-004",
+    "rota": {"origem": "Londrina, PR", "destino": "Maringá, PR"},
+    "veiculo": {"id_caminhao": "VW-4444", "modelo": "VW Constellation"},
+    "motorista": {"cpf": "444.555.666-77", "nome": "Ricardo Mendes Silva"},
+    "carga": {"tipo": "Bebidas", "itens": [{"produto": "Cerveja Lata", "qtd": 5000}]},
+    "status": "Em viagem"
+  },
+  {
+    "id_manifesto": "MNF-2026-005",
+    "rota": {"origem": "Joinville, SC", "destino": "Curitiba, PR"},
+    "veiculo": {"id_caminhao": "SC-5555", "modelo": "Scania G420"},
+    "motorista": {"cpf": "555.666.777-88", "nome": "Juliana Costa"},
+    "carga": {"tipo": "Peças Automotivas", "prioridade": "Alta"},
+    "status": "Iniciado"
+  },
+  {
+    "id_manifesto": "MNF-2026-006",
+    "rota": {"origem": "Cuiabá, MT", "destino": "Rondonópolis, MT"},
+    "veiculo": {"id_caminhao": "VO-6666", "modelo": "Volvo FM"},
+    "motorista": {"cpf": "666.777.888-99", "nome": "Marcos Antônio Dias"},
+    "carga": {"tipo": "Fertilizantes", "peso_kg": 40000},
+    "status": "Em viagem"
+  },
+  {
+    "id_manifesto": "MNF-2026-007",
+    "rota": {"origem": "Uberlândia, MG", "destino": "São Paulo, SP"},
+    "veiculo": {"id_caminhao": "MB-7777", "modelo": "Mercedes Actros"},
+    "motorista": {"cpf": "777.888.999-00", "nome": "Patrícia Helena Rocha"},
+    "carga": {"tipo": "Alimentos", "itens": [{"produto": "Macarrão", "qtd": 10000}]},
+    "status": "Finalizado"
+  },
+  {
+    "id_manifesto": "MNF-2026-008",
+    "rota": {"origem": "Porto Alegre, RS", "destino": "Florianópolis, SC"},
+    "veiculo": {"id_caminhao": "VW-8888", "modelo": "VW Meteor"},
+    "motorista": {"cpf": "888.999.000-11", "nome": "Luiz Gustavo Ramos"},
+    "carga": {"tipo": "Móveis", "fragil": true},
+    "status": "Suspenso"
+  },
+  {
+    "id_manifesto": "MNF-2026-009",
+    "rota": {"origem": "Curitiba, PR", "destino": "Chapecó, SC"},
+    "veiculo": {"id_caminhao": "SC-9999", "modelo": "Scania R500"},
+    "motorista": {"cpf": "999.000.111-22", "nome": "Sandra Maria Farias"},
+    "carga": {"tipo": "Medicamentos", "controlado": true},
+    "status": "Em viagem"
+  },
+  {
+    "id_manifesto": "MNF-2026-010",
+    "rota": {"origem": "Belo Horizonte, MG", "destino": "Vitória, ES"},
+    "veiculo": {"id_caminhao": "VO-0000", "modelo": "Volvo FH 460"},
+    "motorista": {"cpf": "000.111.222-33", "nome": "Paulo Henrique Nogueira"},
+    "carga": {"tipo": "Minério", "peso_kg": 50000},
+    "status": "Finalizado"
+  },
+  {
+    "id_manifesto": "MNF-2026-011",
+    "rota": {"origem": "São José dos Campos, SP", "destino": "Resende, RJ"},
+    "veiculo": {"id_caminhao": "MB-1212", "modelo": "Mercedes Axor"},
+    "motorista": {"cpf": "121.232.343-45", "nome": "Roberto Carlos Ferreira"},
+    "carga": {"tipo": "Aço", "comprimento_m": 12.0},
+    "status": "Iniciado"
+  },
+  {
+    "id_manifesto": "MNF-2026-012",
+    "rota": {"origem": "Manaus, AM", "destino": "Boa Vista, RR"},
+    "veiculo": {"id_caminhao": "VW-5432", "modelo": "VW Constellation"},
+    "motorista": {"cpf": "543.654.765-87", "nome": "Cláudia Regina Santos"},
+    "carga": {"tipo": "Eletrodomésticos", "itens": [{"produto": "Ar Condicionado", "qtd": 150}]},
+    "status": "Em viagem"
+  },
+  {
+    "id_manifesto": "MNF-2026-013",
+    "rota": {"origem": "Rio de Janeiro, RJ", "destino": "Campos, RJ"},
+    "veiculo": {"id_caminhao": "SC-9871", "modelo": "Scania P310"},
+    "motorista": {"cpf": "987.123.456-88", "nome": "Sérgio Murilo"},
+    "carga": {"tipo": "Combustível", "inflamavel": true, "volume_l": 30000},
+    "status": "Finalizado"
+  },
+  {
+    "id_manifesto": "MNF-2026-014",
+    "rota": {"origem": "Recife, PE", "destino": "Salvador, BA"},
+    "veiculo": {"id_caminhao": "VO-4567", "modelo": "Volvo VM"},
+    "motorista": {"cpf": "456.789.123-55", "nome": "Elaine Cristina"},
+    "carga": {"tipo": "Têxtil", "peso_kg": 15000},
+    "status": "Planejado"
+  },
+  {
+    "id_manifesto": "MNF-2026-015",
+    "rota": {"origem": "Goiânia, GO", "destino": "Brasília, DF"},
+    "veiculo": {"id_caminhao": "MB-3216", "modelo": "Mercedes Atego"},
+    "motorista": {"cpf": "321.654.987-22", "nome": "Wellington Silva"},
+    "carga": {"tipo": "Hortifruti", "perecivel": true},
+    "status": "Em viagem"
+  },
+  {
+    "id_manifesto": "MNF-2026-016",
+    "rota": {"origem": "Fortaleza, CE", "destino": "Natal, RN"},
+    "veiculo": {"id_caminhao": "VW-2020", "modelo": "VW Delivery"},
+    "motorista": {"cpf": "111.222.333-44", "nome": "Carlos Roberto Souza"},
+    "carga": {"tipo": "Materiais de Construção"},
+    "status": "Iniciado"
+  },
+  {
+    "id_manifesto": "MNF-2026-017",
+    "rota": {"origem": "Belém, PA", "destino": "São Luís, MA"},
+    "veiculo": {"id_caminhao": "SC-3030", "modelo": "Scania R450"},
+    "motorista": {"cpf": "222.333.444-55", "nome": "Ana Beatriz Oliveira"},
+    "carga": {"tipo": "Papel e Celulose", "peso_kg": 30000},
+    "status": "Em viagem"
+  },
+  {
+    "id_manifesto": "MNF-2026-018",
+    "rota": {"origem": "Campo Grande, MS", "destino": "Dourados, MS"},
+    "veiculo": {"id_caminhao": "VO-4040", "modelo": "Volvo FH"},
+    "motorista": {"cpf": "333.444.555-66", "nome": "Fernando Pereira Lima"},
+    "carga": {"tipo": "Carnes", "inspecao_sif": true},
+    "status": "Planejado"
+  },
+  {
+    "id_manifesto": "MNF-2026-019",
+    "rota": {"origem": "Teresina, PI", "destino": "Parnaíba, PI"},
+    "veiculo": {"id_caminhao": "MB-5050", "modelo": "Mercedes Accelo"},
+    "motorista": {"cpf": "444.555.666-77", "nome": "Ricardo Mendes Silva"},
+    "carga": {"tipo": "Bebidas", "itens": [{"produto": "Refrigerante", "qtd": 2000}]},
+    "status": "Em viagem"
+  },
+  {
+    "id_manifesto": "MNF-2026-020",
+    "rota": {"origem": "Ponta Grossa, PR", "destino": "Castro, PR"},
+    "veiculo": {"id_caminhao": "VW-6060", "modelo": "VW Constellation"},
+    "motorista": {"cpf": "555.666.777-88", "nome": "Juliana Costa"},
+    "carga": {"tipo": "Laticínios", "volume_l": 15000},
+    "status": "Finalizado"
+  }
+]

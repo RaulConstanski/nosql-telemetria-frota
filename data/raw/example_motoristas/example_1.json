@@ -1,0 +1,129 @@
+[
+  {
+    "cpf": "111.222.333-44",
+    "nome": "Carlos Roberto Souza",
+    "cnh_categoria": "E",
+    "telefone": "(41) 98877-1122",
+    "status": "Ativo",
+    "data_cadastro": "2025-05-10",
+    "vencimento_mopp": "2027-01-15"
+  },
+  {
+    "cpf": "222.333.444-55",
+    "nome": "Ana Beatriz Oliveira",
+    "cnh_categoria": "E",
+    "telefone": "(41) 97766-2233",
+    "status": "Em viagem",
+    "data_cadastro": "2025-06-12",
+    "vencimento_mopp": "2026-11-20"
+  },
+  {
+    "cpf": "333.444.555-66",
+    "nome": "Fernando Pereira Lima",
+    "cnh_categoria": "D",
+    "telefone": "(41) 96655-3344",
+    "status": "Ativo",
+    "data_cadastro": "2025-08-05"
+  },
+  {
+    "cpf": "444.555.666-77",
+    "nome": "Ricardo Mendes Silva",
+    "cnh_categoria": "E",
+    "telefone": "(41) 95544-4455",
+    "status": "Folga",
+    "data_cadastro": "2025-09-18",
+    "vencimento_mopp": "2028-03-10"
+  },
+  {
+    "cpf": "555.666.777-88",
+    "nome": "Juliana Costa",
+    "cnh_categoria": "E",
+    "telefone": "(11) 94433-5566",
+    "status": "Ativo",
+    "data_cadastro": "2025-10-22"
+  },
+  {
+    "cpf": "666.777.888-99",
+    "nome": "Marcos Antônio Dias",
+    "cnh_categoria": "D",
+    "telefone": "(47) 93322-6677",
+    "status": "Em viagem",
+    "data_cadastro": "2025-11-03"
+  },
+  {
+    "cpf": "777.888.999-00",
+    "nome": "Patrícia Helena Rocha",
+    "cnh_categoria": "E",
+    "telefone": "(41) 92211-7788",
+    "status": "Ativo",
+    "data_cadastro": "2025-12-15",
+    "vencimento_mopp": "2027-05-22"
+  },
+  {
+    "cpf": "888.999.000-11",
+    "nome": "Luiz Gustavo Ramos",
+    "cnh_categoria": "E",
+    "telefone": "(48) 91100-8899",
+    "status": "Afastado",
+    "data_cadastro": "2026-01-10"
+  },
+  {
+    "cpf": "999.000.111-22",
+    "nome": "Sandra Maria Farias",
+    "cnh_categoria": "D",
+    "telefone": "(41) 90099-9900",
+    "status": "Ativo",
+    "data_cadastro": "2026-02-14"
+  },
+  {
+    "cpf": "000.111.222-33",
+    "nome": "Paulo Henrique Nogueira",
+    "cnh_categoria": "E",
+    "telefone": "(41) 89988-1010",
+    "status": "Em viagem",
+    "data_cadastro": "2026-02-28",
+    "vencimento_mopp": "2028-12-01"
+  },
+  {
+    "cpf": "121.232.343-45",
+    "nome": "Roberto Carlos Ferreira",
+    "cnh_categoria": "E",
+    "telefone": "(11) 88877-2020",
+    "status": "Ativo",
+    "data_cadastro": "2026-03-05"
+  },
+  {
+    "cpf": "543.654.765-87",
+    "nome": "Cláudia Regina Santos",
+    "cnh_categoria": "E",
+    "telefone": "(41) 87766-3030",
+    "status": "Ativo",
+    "data_cadastro": "2026-03-12",
+    "vencimento_mopp": "2027-09-10"
+  },
+  {
+    "cpf": "987.123.456-88",
+    "nome": "Sérgio Murilo",
+    "cnh_categoria": "D",
+    "telefone": "(47) 86655-4040",
+    "status": "Em viagem",
+    "data_cadastro": "2026-04-01"
+  },
+  {
+    "cpf": "456.789.123-55",
+    "nome": "Elaine Cristina",
+    "cnh_categoria": "E",
+    "telefone": "(41) 85544-5050",
+    "status": "Folga",
+    "data_cadastro": "2026-04-10"
+  },
+  {
+    "cpf": "321.654.987-22",
+    "nome": "Wellington Silva",
+    "cnh_categoria": "E",
+    "telefone": "(41) 84433-6060",
+    "status": "Ativo",
+    "data_cadastro": "2026-04-25",
+    "vencimento_mopp": "2029-01-05"
+  }
+]
