@@ -56,3 +56,7 @@ A flexibilidade do esquema JSON permite armazenar diferentes tipos de carga (per
 - motoristas: Armazena o cadastro principal atualizado do condutor.
 
 - manifestos: Registra as viagens, incluindo um snapshot dos dados do motorista e detalhes de carga.
+
+### Exemplos de consultas no MongoDB via mongosh, podendo ser aplicado em código
+- Consulta de motoristas que possuem carteira E
+- - db["motoristas"].find({"cnh_categoria": "E"}, {"nome": 1, "cpf": 1,"_id": 1})
